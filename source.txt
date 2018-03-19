@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+
+    "data":
+    {
+        "url":
+                "https://raw.githubusercontent.com/murraymacmahon/ADAPT/master/CPI2012-2017.csv",
+        "format":
+        {
+            "type": "csv"
+        }
+
+    },
+    "transform": [
+    ],
+    "title":
+    {
+        "text": "CPI Scores per Year"
+    },
+
+    "repeat":
+    {
+        "row": ["CPI score 2017", "CPI score 2016", "CPI score 2015", "CPI score 2014", "CPI Score 2013", "CPI Score 2012"]
+    },
+
+    "spec":
+    {
+        "mark": "bar",
+        "encoding":
+        {
+            "x":
+            {
+                "field": "Country",
+                "type": "nominal"
+            },
+
+            "y":
+            {
+                "field": {"repeat": "row"},
+                "type": "quantitative",
+                "aggregate": "sum",
+                "scale": {"zero": false}
+            },
+
+            "tooltip":
+            {
+                "field": "Country", "type": "nominal"
+            }
+        }
+    }
+}
