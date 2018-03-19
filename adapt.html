@@ -1,0 +1,78 @@
+<html>
+   <head>
+      <title> Murray Mac Mahon - ADAPT Visualisation</title>
+	   <script src="https://cdn.jsdelivr.net/npm/vega@3.0.10"></script>
+	   <script src="https://cdn.jsdelivr.net/npm/vega-lite@2.1.2"></script>
+	   <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.0.0"></script>
+      <style>
+         body {
+         font-family: sans-serif;
+         }
+         .vega-actions a {
+         padding: 0.2em;
+         }
+      </style>
+   </head>
+   <body>
+      <hr />
+      <div id="vis" align="center"></div>
+      <hr />
+      
+      <table style="width: 850px; margin-left: auto; margin-right: auto;" cellspacing="5" cellpadding="5">
+      </table>
+      <script type="text/javascript"> // Vega Lite code below
+        var yourVlSpec =  {
+            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+
+            "data":
+            {
+                "url":
+                        "https://raw.githubusercontent.com/murraymacmahon/ADAPT/master/CPI2012-2017.csv",
+                "format":
+                {
+                    "type": "csv"
+                }
+
+            },
+            "transform": [
+            ],
+            "title":
+            {
+                "text": "CPI Scores per Year"
+            },
+
+            "repeat":
+            {
+                "row": ["CPI score 2017", "CPI score 2016", "CPI score 2015", "CPI score 2014", "CPI Score 2013", "CPI Score 2012"]
+            },
+
+            "spec":
+            {
+                "mark": "bar",
+                "encoding":
+                {
+                    "x":
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+
+                    "y":
+                    {
+                        "field": {"repeat": "row"},
+                        "type": "quantitative",
+                        "aggregate": "sum",
+                        "scale": {"zero": false}
+                    },
+
+                    "tooltip":
+                    {
+                        "field": "Country", "type": "nominal"
+                    }
+                }
+            }
+        }
+            vegaEmbed("#vis", yourVlSpec);
+      </script>
+   </body>
+</html>
